@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Eco</string>
+    <string name="welcome_to_the_carbon_footprint_calculator">Welcome to the carbon footprint calculator</string>
+    <string name="please_select_your_choices_for_each_category">Please select your choices for each category:</string>
+    <string name="Transportation">Transportation</string>
+    <string name="enter_your_choice">Enter your choice</string>
+    <string name="Heating_Cooling_Electricity">Heating/Cooling/Electricity</string>
+    <string name="Dietary_Emission">Meat/Dairy/Plant_based</string>
+    <string name="calculate">Calculator</string>
+</resources>

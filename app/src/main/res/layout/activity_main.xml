@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/Welcome_TextView"
+        android:layout_width="362dp"
+        android:layout_height="153dp"
+        android:text="@string/welcome_to_the_carbon_footprint_calculator"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/parent"
+        tools:ignore="MissingConstraints,UnknownId" />
+
+    <TextView
+        android:id="@+id/SelectChoices_TextView"
+        android:layout_width="355dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="116dp"
+        android:text="@string/please_select_your_choices_for_each_category"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Welcome_TextView"
+        tools:ignore="MissingConstraints" />
+    <TextView
+        android:id="@+id/Transportation"
+        android:layout_width="350dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/Transportation"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SelectChoices_TextView" />
+
+    <EditText
+        android:id="@+id/EnterChoice_Transportation_Input_editText"
+        android:layout_width="355dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="16dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/enter_your_choice"
+        android:inputType="text"
+        android:text=""
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.446"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Transportation" />
+
+    <TextView
+        android:id="@+id/EnergyEmissions"
+        android:layout_width="353dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/Heating_Cooling_Electricity"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EnterChoice_Transportation_Input_editText" />
+
+    <EditText
+        android:id="@+id/EnterEnergyChoice_InputEditText"
+        android:layout_width="351dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="16dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/enter_your_choice"
+        android:inputType="text"
+        android:text=""
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EnergyEmissions" />
+
+    <TextView
+        android:id="@+id/Dietary"
+        android:layout_width="350dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/Dietary_Emission"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.54"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EnterEnergyChoice_InputEditText" />
+
+    <EditText
+        android:id="@+id/EnterChoice_Dietary_InputEditText"
+        android:layout_width="350dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="12dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/enter_your_choice"
+        android:inputType="text"
+        android:text=""
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.54"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Dietary" />
+
+    <Button
+        android:id="@+id/Calculate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/calculate"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.42"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EnterChoice_Dietary_InputEditText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
