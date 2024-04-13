@@ -20,10 +20,10 @@ import com.example.eco.database.typeConverters.LocalDateTypeConverter;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 @TypeConverters(LocalDateTypeConverter.class)
-@Database(entities = {EcoTrackLog.class, User.class}, version = 2, exportSchema = false)
+@Database(entities = {EcoTrackLog.class, User.class}, version = 1, exportSchema = false)
 public abstract class EcoTrackDatabase extends RoomDatabase {
-    public static final String USER_TABLE = "user_table";
-    private static final String DATABASE_NAME = "Ecotrack_database";
+    public static final String USER_TABLE = "usertable";
+    private static final String DATABASE_NAME = "Ecotrackdatabase";
     public static final String ecoTrackLogTable ="ecoTrackLogTable";
     private static volatile EcoTrackDatabase INSTANCE;
 
@@ -46,15 +46,25 @@ public abstract class EcoTrackDatabase extends RoomDatabase {
         return INSTANCE;
     }
 
-    private static final RoomDatabase.Callback addDefaultValues = new RoomDatabase.Callback() {
-        @Override
-        public void onCreate(@NonNull SupportSQLiteDatabase db) {
-            super.onCreate(db);
-            Log.i(MainActivity.TAG, "Database created! ");
-
-        }
+    private static final RoomDatabase.Callback addDefaultValues = new RoomDatabase.Callback(){
+       @Override
+       public void onCreate(@NonNull SupportSQLiteDatabase db){
+           super.onCreate(db);
+           Log.i(MainActivity.TAG,"DATABASE CREATED!");
+           databaseWriteExecuter.execute(() -> {
+           UserDAO dao = INSTANCE.userDAO();
+           dao.deleteAll();
+           User admin = new User("admin1", "admin1");
+           admin.setAdmin(true);
+           dao.insert(admin);
+           User testUser1 = new User("testuser1", "testuser1");
+           dao.insert(testUser1);
+        });
+       }
     };
 
     public abstract EcoTrackDAO ecoTrackDAO() ;
+
+    public abstract UserDAO userDAO();
 }
 

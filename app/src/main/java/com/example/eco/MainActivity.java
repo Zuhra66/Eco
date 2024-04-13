@@ -1,6 +1,7 @@
 package com.example.eco;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
@@ -28,12 +29,18 @@ public class MainActivity extends AppCompatActivity {
     String Transportation = "";
     String Energy = "";
     String Dietary = "";
+    int loggedInUserId = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        loginUser();
+        if(loggedInUserId == -1){
+            Intent intent = LoginActivity.loginIntentFactor(getApplicationContext());
+            startActivity(intent);
+        }
         repository = EcoTrackRepository.getRepository(getApplication());
         binding.WelcomeTextView.setMovementMethod(new ScrollingMovementMethod());
         updateDisplay();
@@ -45,12 +52,23 @@ public class MainActivity extends AppCompatActivity {
                 updateDisplay();
             }
         });
+        binding.EnterChoiceTransportationInputEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateDisplay();
+            }
+        });
     }
+
+    private void loginUser() {
+
+    }
+
     private void insertEcoTrackLogRecord(){
         if(Transportation.isEmpty()){
             return;
         }
-        EcoTrackLog log = new EcoTrackLog(Transportation,Energy,Dietary);
+        EcoTrackLog log = new EcoTrackLog(Transportation,Energy,Dietary,loggedInUserId);
         repository.insertEcoTrackLog(log);
 
     }

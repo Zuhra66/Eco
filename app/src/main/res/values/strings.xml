@@ -8,4 +8,9 @@
     <string name="Dietary_Emission">Meat/Dairy/Plant_based</string>
     <string name="calculate">Calculator</string>
     <string name="nothing_to_show">"nothing to show "</string>
+    <string name="welcome_to_the_ecotrack_please_login">Welcome to the EcoTrack/ Please login</string>
+    <string name="please_enter_username">Please enter username</string>
+    <string name="please_enter_password">please enter password</string>
+    <string name="welcome_to_the_please_login">Welcome to the EcoTrack\nPlease Login In</string>
+    <string name="login">Login</string>
 </resources>

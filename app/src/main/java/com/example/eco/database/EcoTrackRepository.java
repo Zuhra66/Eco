@@ -4,6 +4,8 @@ import android.util.Log;
 import com.example.eco.MainActivity;
 import com.example.eco.database.entity.EcoTrackDAO;
 import com.example.eco.database.entity.EcoTrackLog;
+import com.example.eco.database.entity.User;
+
 import java.util.ArrayList;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -11,10 +13,12 @@ import java.util.concurrent.Future;
 
 public class EcoTrackRepository {
     private final EcoTrackDAO ecoTrackDAO;
+    private final UserDAO userDAO;
     private static EcoTrackRepository repository;
     private EcoTrackRepository(Application application) {
         EcoTrackDatabase db = EcoTrackDatabase.getDatabase(application);
         this.ecoTrackDAO = db.ecoTrackDAO();
+        this.userDAO = db.userDAO();
         ArrayList<EcoTrackLog> allLogs = (ArrayList<EcoTrackLog>) this.ecoTrackDAO.getAllRecords();
     }
     public static EcoTrackRepository getRepository(Application application){
@@ -56,6 +60,11 @@ public class EcoTrackRepository {
     public void insertEcoTrackLog(EcoTrackLog ecoTrackLog) {
         EcoTrackDatabase.databaseWriteExecuter.execute(() -> {
             ecoTrackDAO.insert(ecoTrackLog);
+        });
+    }
+    public void insertUser(User... user) {
+        EcoTrackDatabase.databaseWriteExecuter.execute(() -> {
+            userDAO.insert(user);
         });
     }
 }

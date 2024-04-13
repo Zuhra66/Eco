@@ -17,14 +17,16 @@ public class EcoTrackLog {
     private String Energy;
     private String Dietary;
     private LocalDateTime date;
+    private int userId;
 
     public EcoTrackLog() {
     }
 
-    public EcoTrackLog(String transportation, String energy, String dietary) {
-        Transportation = transportation;
-        Energy = energy;
-        Dietary = dietary;
+    public EcoTrackLog(String transportation, String energy, String dietary, int userId) {
+        this.Transportation = transportation;
+        this.Energy = energy;
+        this.Dietary = dietary;
+        this.userId = userId;
         date = LocalDateTime.now();
     }
 
@@ -43,13 +45,13 @@ public class EcoTrackLog {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        EcoTrackLog that = (EcoTrackLog) o;
-        return id == that.id && Objects.equals(Transportation, that.Transportation) && Objects.equals(Energy, that.Energy) && Objects.equals(Dietary, that.Dietary) && Objects.equals(date, that.date);
+        EcoTrackLog log = (EcoTrackLog) o;
+        return id == log.id && userId == log.userId && Objects.equals(Transportation, log.Transportation) && Objects.equals(Energy, log.Energy) && Objects.equals(Dietary, log.Dietary) && Objects.equals(date, log.date);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, Transportation, Energy, Dietary, date);
+        return Objects.hash(id, Transportation, Energy, Dietary, date, userId);
     }
 
     public int getId() {
@@ -90,5 +92,13 @@ public class EcoTrackLog {
 
     public void setDate(LocalDateTime date) {
         this.date = date;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

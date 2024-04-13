@@ -18,4 +18,7 @@ public interface UserDAO {
     void delete(User user);
     @Query("SELECT * FROM "+ EcoTrackDatabase.USER_TABLE + " ORDER BY username")
     List<User> getAllUsers();
+
+    @Query("DELETE from " + EcoTrackDatabase.USER_TABLE)
+    void deleteAll();
 }
