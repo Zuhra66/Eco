@@ -7,4 +7,5 @@
     <string name="Heating_Cooling_Electricity">Heating/Cooling/Electricity</string>
     <string name="Dietary_Emission">Meat/Dairy/Plant_based</string>
     <string name="calculate">Calculator</string>
+    <string name="nothing_to_show">"nothing to show "</string>
 </resources>
