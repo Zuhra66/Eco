@@ -13,4 +13,8 @@
     <string name="please_enter_password">please enter password</string>
     <string name="welcome_to_the_please_login">Welcome to the EcoTrack\nPlease Login In</string>
     <string name="login">Login</string>
+    <string name="logged_in">LOGGED_IN</string>
+    <string name="preference_file_key">preference file key</string>
+    <string name="preference_userId_key">EcoTrackPreferenceUserIdKey</string>
+    <string name="hello">Hello</string>
 </resources>

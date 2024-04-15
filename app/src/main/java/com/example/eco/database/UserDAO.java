@@ -1,5 +1,6 @@
 package com.example.eco.database;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -17,8 +18,13 @@ public interface UserDAO {
     @Delete
     void delete(User user);
     @Query("SELECT * FROM "+ EcoTrackDatabase.USER_TABLE + " ORDER BY username")
-    List<User> getAllUsers();
+    LiveData<List<User>> getAllUsers();
 
     @Query("DELETE from " + EcoTrackDatabase.USER_TABLE)
     void deleteAll();
+
+    @Query("SELECT * from "+EcoTrackDatabase.USER_TABLE + " WHERE username == :username")
+    LiveData<User> getUserByUserName(String username);
+    @Query("SELECT * from "+EcoTrackDatabase.USER_TABLE + " WHERE id == :userId")
+    LiveData<User> getUserByUserId(int userId);
 }

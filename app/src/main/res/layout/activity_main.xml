@@ -7,17 +7,16 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/Welcome_TextView"
-        android:layout_width="362dp"
-        android:layout_height="153dp"
-        android:text="@string/welcome_to_the_carbon_footprint_calculator"
-        android:textSize="20sp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/welcomeDisplayRecyclerView"
+        android:layout_width="364dp"
+        android:layout_height="156dp"
+        android:layout_marginTop="16dp"
+        android:padding="2dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/parent"
-        tools:ignore="MissingConstraints,UnknownId" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/ecotracklog_recycler_item" />
 
     <TextView
         android:id="@+id/SelectChoices_TextView"
@@ -29,7 +28,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.517"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Welcome_TextView"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeDisplayRecyclerView"
         tools:ignore="MissingConstraints" />
     <TextView
         android:id="@+id/Transportation"

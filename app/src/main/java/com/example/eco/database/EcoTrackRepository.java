@@ -1,12 +1,16 @@
 package com.example.eco.database;
 import android.app.Application;
 import android.util.Log;
+
+import androidx.lifecycle.LiveData;
+
 import com.example.eco.MainActivity;
 import com.example.eco.database.entity.EcoTrackDAO;
 import com.example.eco.database.entity.EcoTrackLog;
 import com.example.eco.database.entity.User;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
@@ -66,6 +70,35 @@ public class EcoTrackRepository {
         EcoTrackDatabase.databaseWriteExecuter.execute(() -> {
             userDAO.insert(user);
         });
+    }
+
+    public LiveData<User> getUserByUserName(String username) {
+        return userDAO.getUserByUserName(username);
+
+    }
+    public LiveData<User> getUserByUserId(int userId) {
+        return userDAO.getUserByUserId(userId);
+
+    }
+    public LiveData<List<EcoTrackLog>> getAllLogsByUserIdLiveData(int loggedInUserId){
+        return  ecoTrackDAO.getRecordsByUserIdLiveData(loggedInUserId);
+    }
+    @Deprecated
+    public ArrayList<EcoTrackLog> getAllLogsByUserId(int loggedInUserId){
+        Future<ArrayList<EcoTrackLog>> future = EcoTrackDatabase.databaseWriteExecuter.submit(
+                new Callable<ArrayList<EcoTrackLog>>() {
+                    @Override
+                    public ArrayList<EcoTrackLog> call() throws Exception {
+                        return (ArrayList<EcoTrackLog>) ecoTrackDAO.getRecordsByUserId(loggedInUserId);
+                    }
+
+                });
+        try {
+            return future.get();
+        }catch (InterruptedException | ExecutionException e){
+            Log.i(MainActivity.TAG,"Problem when getting all EcoTrackLog in the Repository");
+        }
+        return null;
     }
 }
 
