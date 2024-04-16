@@ -39,21 +39,22 @@ public class SignUpActivity extends AppCompatActivity {
                 if (repository.doesUserExist(username)) {
                     Toast.makeText(SignUpActivity.this, "Username already exists", Toast.LENGTH_SHORT).show();
                     return;
+                }else {
+
+                    // Create a new User object
+                    User newUser = new User(username, password);
+
+                    // Insert the new user into the database
+                    repository.insertUser(newUser);
+
+                    // Display a success message
+                    Toast.makeText(SignUpActivity.this, "User registered successfully", Toast.LENGTH_SHORT).show();
+
+                    // Navigate back to the LoginActivity
+                    Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish(); // Finish the SignUpActivity to prevent going back to it when pressing back button
                 }
-
-                // Create a new User object
-                User newUser = new User(username, password);
-
-                // Insert the new user into the database
-                repository.insertUser(newUser);
-
-                // Display a success message
-                Toast.makeText(SignUpActivity.this, "User registered successfully", Toast.LENGTH_SHORT).show();
-
-                // Navigate back to the LoginActivity
-                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish(); // Finish the SignUpActivity to prevent going back to it when pressing back button
             }
         });
     }

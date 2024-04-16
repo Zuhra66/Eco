@@ -68,9 +68,16 @@ public class EcoTrackRepository {
         });
     }
 
-    public void insertUser(User... user) {
+    public void insertUser(User... users) {
         EcoTrackDatabase.databaseWriteExecuter.execute(() -> {
-            userDAO.insert(user);
+            try {
+                for (User currentUser : users) {
+                    userDAO.insert(currentUser);
+                    Log.d(MainActivity.TAG, "User inserted successfully: " + currentUser.getUsername());
+                }
+            } catch (Exception e) {
+                Log.e(MainActivity.TAG, "Error inserting user: " + e.getMessage());
+            }
         });
     }
 
@@ -106,7 +113,7 @@ public class EcoTrackRepository {
 
     public boolean doesUserExist(String username) {
         LiveData<User> userLiveData = getUserByUserName(username);
-        return userLiveData != null;
+        return userLiveData.getValue() != null;
     }
 }
 
