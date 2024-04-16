@@ -20,4 +20,10 @@
     <string name="Car_Heating_Cooling">Car/Bicycle/Public Transportation</string>
     <string name="Estimate_your_carbon_footprint_based_On_Transportation_Energy_Dietary">Estimate your carbon footprint based on Transportation/Energy/Dietary choices</string>
     <string name="Estimate_your_carbon_footprint">Estimate your carbon footprint based on:\nTransportation/Energy/Dietary choices.</string>
+    <string name="New_user_please_create_an_account">New User! Please Sign up here</string>
+    <string name="Sign_Up">Sign Up</string>
+    <string name="Please_sign_up_here">Please sign up here.</string>
+    <string name="enter_username">enter username</string>
+    <string name="enter_password">enter password</string>
+    <string name="sign_up">Sign Up</string>
 </resources>
