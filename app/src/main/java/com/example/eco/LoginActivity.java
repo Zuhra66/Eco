@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 
 import com.example.eco.database.EcoTrackRepository;
+import com.example.eco.database.SignUpActivity;
 import com.example.eco.database.entity.User;
 import com.example.eco.databinding.ActivityLoginBinding;
 
@@ -18,23 +19,36 @@ import com.example.eco.databinding.ActivityLoginBinding;
 public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
     private EcoTrackRepository repository;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         repository = EcoTrackRepository.getRepository(getApplication());
+
+        // Set click listener for login button
         binding.loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               verifyUser();
+                verifyUser();
+            }
+        });
+
+        // Set click listener for sign-up button
+        binding.signUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start sign-up activity
+                startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
             }
         });
     }
+
     private void verifyUser() {
         String username = binding.usernameLoginEditText.getText().toString();
         if (username.isEmpty()) {
-            toastMaker("username should not be blank");
+            toastMaker("Username should not be blank");
             return;
         }
         LiveData<User> userObserver = repository.getUserByUserName(username);
@@ -53,10 +67,12 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-    private void toastMaker(String message){
+
+    private void toastMaker(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
-    static Intent loginIntentFactory(Context context){
-        return  new Intent(context, LoginActivity.class);
+
+    static Intent loginIntentFactory(Context context) {
+        return new Intent(context, LoginActivity.class);
     }
 }

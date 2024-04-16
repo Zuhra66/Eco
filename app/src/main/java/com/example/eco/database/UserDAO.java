@@ -27,4 +27,5 @@ public interface UserDAO {
     LiveData<User> getUserByUserName(String username);
     @Query("SELECT * from "+EcoTrackDatabase.USER_TABLE + " WHERE id == :userId")
     LiveData<User> getUserByUserId(int userId);
+
 }

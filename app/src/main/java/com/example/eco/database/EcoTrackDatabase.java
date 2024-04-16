@@ -66,5 +66,10 @@ public abstract class EcoTrackDatabase extends RoomDatabase {
     public abstract EcoTrackDAO ecoTrackDAO() ;
 
     public abstract UserDAO userDAO();
+    public void insertUser(User user) {
+        databaseWriteExecuter.execute(() -> {
+            userDAO().insert(user);
+        });
+    }
 }
 
