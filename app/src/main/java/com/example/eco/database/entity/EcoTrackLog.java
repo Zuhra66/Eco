@@ -16,16 +16,18 @@ public class EcoTrackLog {
     private String Transportation;
     private String Energy;
     private String Dietary;
+    private String totalEmissions;
     private LocalDateTime date;
     private int userId;
 
     public EcoTrackLog() {
     }
 
-    public EcoTrackLog(String transportation, String energy, String dietary, int userId) {
+    public EcoTrackLog(String transportation, String energy, String dietary,String totalEmissions, int userId) {
         this.Transportation = transportation;
         this.Energy = energy;
         this.Dietary = dietary;
+        this.totalEmissions = totalEmissions;
         this.userId = userId;
         date = LocalDateTime.now();
     }
@@ -34,10 +36,11 @@ public class EcoTrackLog {
     @Override
     public String toString() {
         return "EcoTrackLog" + '\n'+
-                ", Transportation='" + Transportation + '\'' +
-                ", Energy='" + Energy + '\'' +
-                ", Dietary='" + Dietary + '\'' +
-                ", date=" + date.toString()+'\n'+
+                " Transportation= " + Transportation + '\n' +
+                " Energy= " + Energy + '\n' +
+                " Dietary= " + Dietary + '\n' +
+                " Total Emissions: "+ totalEmissions + '\n' +
+                " date=" + date.toString()+'\n'+
                 "=-=-=-=-=-=-=-=-=-=\n";
     }
 
@@ -46,12 +49,20 @@ public class EcoTrackLog {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         EcoTrackLog log = (EcoTrackLog) o;
-        return id == log.id && userId == log.userId && Objects.equals(Transportation, log.Transportation) && Objects.equals(Energy, log.Energy) && Objects.equals(Dietary, log.Dietary) && Objects.equals(date, log.date);
+        return id == log.id && userId == log.userId && Objects.equals(Transportation, log.Transportation) && Objects.equals(Energy, log.Energy) && Objects.equals(Dietary, log.Dietary) && Objects.equals(totalEmissions, log.totalEmissions) && Objects.equals(date, log.date);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, Transportation, Energy, Dietary, date, userId);
+        return Objects.hash(id, Transportation, Energy, Dietary, totalEmissions, date, userId);
+    }
+
+    public String getTotalEmissions() {
+        return totalEmissions;
+    }
+
+    public void setTotalEmissions(String totalEmissions) {
+        this.totalEmissions = totalEmissions;
     }
 
     public int getId() {

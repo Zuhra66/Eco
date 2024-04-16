@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.eco.database.CarbonCalculator;
 import com.example.eco.database.EcoTrackRepository;
 import com.example.eco.database.entity.EcoTrackLog;
 import com.example.eco.database.entity.User;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     String Transportation = "";
     String Energy = "";
     String Dietary = "";
+    String totalEmissions = "";
     private int loggedInUserId = -1;
     private User user;
 
@@ -63,31 +65,20 @@ public class MainActivity extends AppCompatActivity {
             adapter.submitList(ecoTrackLogs);
                 });
 
+
         if(loggedInUserId == -1){
             Intent intent = LoginActivity.loginIntentFactory(getApplicationContext());
             startActivity(intent);
         }
         updateSharedPreferences();
-
-       // binding.WelcomeTextView.setMovementMethod(new ScrollingMovementMethod());
-        updateDisplay();
         binding.Calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getInformationFromDisplay();
                 insertEcoTrackLogRecord();
-               // updateDisplay();
-            }
-        });
-        /*
-        binding.EnterChoiceTransportationInputEditText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               // updateDisplay();
-            }
-        });
 
-         */
+            }
+        });
     }
 
     private void loginUser(Bundle savedInstanceState) {
@@ -181,12 +172,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void insertEcoTrackLogRecord(){
-        if(Transportation.isEmpty()){
+        if (Transportation.isEmpty()) {
             return;
         }
-        EcoTrackLog log = new EcoTrackLog(Transportation,Energy,Dietary,loggedInUserId);
-        repository.insertEcoTrackLog(log);
 
+        // Calculate total emissions based on user choices
+        CarbonCalculator calculator = new CarbonCalculator();
+        calculator.calculateTransportationEmissions(Transportation);
+        calculator.calculateEnergyEmissions(Energy);
+        calculator.calculateDietaryEmissions(Dietary);
+        double totalEmissions = calculator.getTotalEmissions();
+
+        // Create EcoTrackLog object with calculated total emissions
+        EcoTrackLog log = new EcoTrackLog(Transportation, Energy, Dietary, String.valueOf(totalEmissions), loggedInUserId);
+
+        // Insert EcoTrackLog record into the database
+        repository.insertEcoTrackLog(log);
     }
     @Deprecated
     private void updateDisplay(){
@@ -199,14 +200,23 @@ public class MainActivity extends AppCompatActivity {
             sb.append(log);
         }
 
-       // binding.WelcomeTextView.setText(sb.toString());
-
 
     }
     private void getInformationFromDisplay(){
         Transportation = binding.EnterChoiceTransportationInputEditText.getText().toString();
         Energy = binding.EnterEnergyChoiceInputEditText.getText().toString();
         Dietary = binding.EnterChoiceDietaryInputEditText.getText().toString();
+
+        // Creates an instance of CarbonCalculator
+        CarbonCalculator calculator = new CarbonCalculator();
+
+        // Calculate emissions based on user choices
+        calculator.calculateTransportationEmissions(Transportation);
+        calculator.calculateEnergyEmissions(Energy);
+        calculator.calculateDietaryEmissions(Dietary);
+
+        // Get the total emissions from CarbonCalculator
+        totalEmissions = String.valueOf(calculator.getTotalEmissions());
 
     }
 }

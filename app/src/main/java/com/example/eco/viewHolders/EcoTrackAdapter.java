@@ -21,8 +21,8 @@ public class EcoTrackAdapter extends ListAdapter<EcoTrackLog, EcoTrackViewHolder
     @Override
     public void onBindViewHolder(@NonNull EcoTrackViewHolder holder, int position) {
         EcoTrackLog current = getItem(position);
+        // Display the total emissions along with other information
         holder.bind(current.toString());
-
     }
 
     public static class EcoTrackLogDiff extends DiffUtil.ItemCallback<EcoTrackLog>{
