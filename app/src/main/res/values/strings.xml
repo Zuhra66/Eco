@@ -26,4 +26,8 @@
     <string name="enter_username">enter username</string>
     <string name="enter_password">enter password</string>
     <string name="sign_up">Sign Up</string>
+    <string name="delete">Delete</string>
+    <string name="RecyclerView">RecyclerView</string>
+    <string name="gone">Delete</string>
+    <string name="Delete">Delete</string>
 </resources>

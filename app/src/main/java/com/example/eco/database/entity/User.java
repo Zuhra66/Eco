@@ -15,10 +15,10 @@ public class User {
     private final String password;
     private boolean isAdmin;
 
-    public User(String username, String password) {
+    public User(String username, String password, boolean isAdmin) {
         this.username = username;
         this.password = password;
-        isAdmin = false;
+        this.isAdmin = isAdmin;
     }
 
     @Override

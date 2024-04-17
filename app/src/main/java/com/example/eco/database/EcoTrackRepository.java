@@ -115,5 +115,15 @@ public class EcoTrackRepository {
         LiveData<User> userLiveData = getUserByUserName(username);
         return userLiveData.getValue() != null;
     }
+
+    public LiveData<List<User>> getAllUsers() {
+        return userDAO.getAllUsers();
+    }
+
+    public void deleteUser(User user) {
+        EcoTrackDatabase.databaseWriteExecuter.execute(() -> {
+            userDAO.delete(user);
+        });
+    }
 }
 
