@@ -3,14 +3,22 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <TextView
+        android:id="@+id/recyclerItem_usernameTextView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/recyclerItemTextView"
-        android:text="@string/hello"
-        android:padding="2dp"
+        android:layout_height="495dp"
         android:layout_margin="8dp"
-        android:textSize="18sp"/>
+        android:padding="2dp"
+        android:text="@string/RecyclerView"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Delete"
+        android:visibility="gone" />
 
 
 </LinearLayout>

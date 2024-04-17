@@ -36,7 +36,7 @@
         android:layout_width="350dp"
         android:layout_height="47dp"
         android:layout_marginTop="12dp"
-        android:text="@string/Car_Heating_Cooling"
+        android:text="@string/Car__public_transportation_air_Travel"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"

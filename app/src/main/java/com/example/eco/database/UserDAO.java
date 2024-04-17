@@ -28,4 +28,7 @@ public interface UserDAO {
     @Query("SELECT * from "+EcoTrackDatabase.USER_TABLE + " WHERE id == :userId")
     LiveData<User> getUserByUserId(int userId);
 
+    @Query("SELECT * FROM " + EcoTrackDatabase.USER_TABLE + " WHERE id = :userId")
+    User getUserByUserIdSync(int userId);
+
 }

@@ -17,13 +17,13 @@ import java.util.concurrent.Future;
 
 public class EcoTrackRepository {
     private final EcoTrackDAO ecoTrackDAO;
-    private final UserDAO userDAO;
-    private static EcoTrackRepository repository;
+    private static UserDAO userDAO = null;
+    public static EcoTrackRepository repository;
 
     private EcoTrackRepository(Application application) {
         EcoTrackDatabase db = EcoTrackDatabase.getDatabase(application);
         this.ecoTrackDAO = db.ecoTrackDAO();
-        this.userDAO = db.userDAO();
+        userDAO = db.userDAO();
     }
 
     public static EcoTrackRepository getRepository(Application application){
@@ -42,6 +42,23 @@ public class EcoTrackRepository {
             return future.get();
         } catch (InterruptedException | ExecutionException e) {
             Log.d(MainActivity.TAG,"Problem getting EcoTrackRepository thread error.");
+        }
+        return null;
+    }
+
+    public static String getUsernameById(int userId) {
+        Future<String> future = EcoTrackDatabase.databaseWriteExecuter.submit(new Callable<String>() {
+            @Override
+            public String call() throws Exception {
+                User user = userDAO.getUserByUserIdSync(userId); // Assuming a synchronous method is available to fetch user by ID
+                return user != null ? user.getUsername() : null;
+            }
+        });
+
+        try {
+            return future.get();
+        } catch (InterruptedException | ExecutionException e) {
+            Log.e(MainActivity.TAG, "Error getting username by ID: " + e.getMessage());
         }
         return null;
     }
@@ -114,6 +131,12 @@ public class EcoTrackRepository {
     public boolean doesUserExist(String username) {
         LiveData<User> userLiveData = getUserByUserName(username);
         return userLiveData.getValue() != null;
+    }
+
+    public void deleteEcoTrackLog(EcoTrackLog ecoTrackLog) {
+        EcoTrackDatabase.databaseWriteExecuter.execute(() -> {
+            ecoTrackDAO.delete(ecoTrackLog);
+        });
     }
 }
 

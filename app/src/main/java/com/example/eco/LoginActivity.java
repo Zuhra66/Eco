@@ -12,6 +12,7 @@ import androidx.lifecycle.LiveData;
 
 import com.example.eco.database.EcoTrackRepository;
 import com.example.eco.database.SignUpActivity;
+import com.example.eco.database.WelcomeActivity;
 import com.example.eco.database.entity.User;
 import com.example.eco.databinding.ActivityLoginBinding;
 
@@ -31,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
         binding.loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 verifyUser();
             }
         });
@@ -56,7 +58,8 @@ public class LoginActivity extends AppCompatActivity {
             if (user != null) {
                 String password = binding.passwordLoginEditText.getText().toString();
                 if (password.equals(user.getPassword())) {
-                    startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), user.getId()));
+                    // Start the WelcomeActivity instead of MainActivity
+                    startActivity(WelcomeActivity.welcomeIntentFactory(getApplicationContext()));
                 } else {
                     toastMaker("Invalid password");
                     binding.passwordLoginEditText.setSelection(0);

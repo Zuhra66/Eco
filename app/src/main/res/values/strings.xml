@@ -26,4 +26,12 @@
     <string name="enter_username">enter username</string>
     <string name="enter_password">enter password</string>
     <string name="sign_up">Sign Up</string>
+    <string name="RecyclerView">RecyclerView</string>
+    <string name="Delete">Delete</string>
+    <string name="Car__public_ransportation_air_Travel">Car/Public_transportation/Air_travel</string>
+    <string name="Car__public_transportation_air_Travel">Car/Public_transportation/Air_travel</string>
+    <string name="welcome">Welcome</string>
+    <string name="calculate_carbon_footprint">Calculate Carbon Footprint</string>
+    <string name="user_management">User management</string>
+    <string name="community_engagement">Community Engagement</string>
 </resources>

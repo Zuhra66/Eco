@@ -2,6 +2,7 @@ package com.example.eco.database.entity;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -20,12 +21,12 @@ public interface EcoTrackDAO {
     @Query("SELECT * FROM " + EcoTrackDatabase.ecoTrackLogTable + " ORDER BY date DESC")
     List<EcoTrackLog> getAllRecords();
 
-    //@Query("SELECT * FROM " + EcoTrackDatabase.ecoTrackLogTable + " WHERE userId = :userId ORDER BY date DESC")
-    //LiveData<List<EcoTrackLog>> getAllLogsByUserId(int userId);
     @Query("SELECT * FROM " + EcoTrackDatabase.ecoTrackLogTable + " WHERE userId = :loggedInUserId ORDER BY date DESC")
     List<EcoTrackLog> getRecordsByUserId(int loggedInUserId);
 
     @Query("SELECT * FROM " + EcoTrackDatabase.ecoTrackLogTable + " WHERE userId = :loggedInUserId ORDER BY date DESC")
     LiveData<List<EcoTrackLog>> getRecordsByUserIdLiveData(int loggedInUserId);
+    @Delete
+    void delete(EcoTrackLog ecoTrackLog);
 
 }
