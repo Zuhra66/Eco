@@ -176,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
         sharedPrefEditor.apply();
     }
 
-    static Intent mainActivityIntentFactory(Context context, int UserId) {
+    public static Intent mainActivityIntentFactory(Context context, int UserId) {
         Intent intent = new Intent(context, MainActivity.class);
         intent.putExtra(MAIN_ACTIVITY_USER_ID, UserId);
         return intent;

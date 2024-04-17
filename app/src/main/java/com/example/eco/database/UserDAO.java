@@ -16,7 +16,7 @@ public interface UserDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(User... user);
     @Delete
-    void delete(User user);
+    void delete(User... user);
     @Query("SELECT * FROM "+ EcoTrackDatabase.USER_TABLE + " ORDER BY username")
     LiveData<List<User>> getAllUsers();
 

@@ -12,7 +12,7 @@ import java.util.List;
 
 public class EcoTrackLogViewModel extends AndroidViewModel {
 private EcoTrackRepository repository;
-//private final LiveData<List<EcoTrackLog>> allLogsById;
+private final LiveData<List<EcoTrackLog>> allLogsById;
 public EcoTrackLogViewModel(Application application){
     super((application));
     repository = EcoTrackRepository.getRepository(application);

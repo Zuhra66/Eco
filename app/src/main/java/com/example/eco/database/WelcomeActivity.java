@@ -8,13 +8,11 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.eco.MainActivity;
-import com.example.eco.R;
-import com.example.eco.databinding.ActivityMainBinding;
+
 import com.example.eco.databinding.ActivityWelcomeBinding;
 
 public class WelcomeActivity extends AppCompatActivity {
     private ActivityWelcomeBinding binding;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,20 +23,10 @@ public class WelcomeActivity extends AppCompatActivity {
         binding.calculateCarbonButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // When the button is clicked, start MainActivity
-                startMainActivity();
+                startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
             }
         });
-    }
 
-    // Method to start MainActivity
-    private void startMainActivity() {
-        // Create an intent to start MainActivity
-        Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
-        // Start the activity
-        startActivity(intent);
-        // Finish the WelcomeActivity to prevent it from staying in the back stack
-        finish();
     }
 
     // Method to create an intent for starting WelcomeActivity
@@ -46,9 +34,4 @@ public class WelcomeActivity extends AppCompatActivity {
         return new Intent(context, WelcomeActivity.class);
     }
 
-    public void onCalculateCarbonButtonClick(View view) {
-        // Start MainActivity
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
 }
