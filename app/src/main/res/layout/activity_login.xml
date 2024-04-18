@@ -37,6 +37,7 @@
         android:layout_height="75dp"
         android:id="@+id/passwordLoginEditText"
         android:textSize="24sp"
+        android:inputType="textPassword"
         android:text=""
         android:hint="@string/please_enter_password"
         android:gravity="center"
@@ -45,7 +46,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/usernameLoginEditText"
         android:autofillHints=""
-        android:inputType="text"
         tools:ignore="TextFields" />
 
     <Button
@@ -58,6 +58,31 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordLoginEditText" />
+
+    <TextView
+        android:id="@+id/New_user"
+        android:layout_width="377dp"
+        android:layout_height="79dp"
+        android:layout_margin="16dip"
+        android:layout_marginTop="168dp"
+        android:gravity="center"
+        android:text="@string/New_user_please_create_an_account"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginButton"
+        tools:ignore="InvalidId" />
+    <Button
+        android:layout_width="267dp"
+        android:id="@+id/signUpButton"
+        android:layout_height="89dp"
+        android:gravity="center"
+        android:text="@string/Sign_Up"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/New_user" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

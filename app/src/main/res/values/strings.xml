@@ -1,20 +1,37 @@
 <resources>
-    <string name="app_name">Eco</string>
-    <string name="welcome_to_the_carbon_footprint_calculator">Welcome to the carbon footprint calculator</string>
-    <string name="please_select_your_choices_for_each_category">Please select your choices for each category:</string>
+    <string name="app_name" translatable="false">Eco</string>
+    <string name="welcome_to_the_carbon_footprint_calculator" translatable="false">Welcome to the carbon footprint calculator</string>
+    <string name="please_select_your_choices_for_each_category" translatable="false">Please select your choices for each category:</string>
     <string name="Transportation">Transportation</string>
-    <string name="enter_your_choice">Enter your choice</string>
+    <string name="enter_your_choice" translatable="false">Enter your choice</string>
     <string name="Heating_Cooling_Electricity">Heating/Cooling/Electricity</string>
     <string name="Dietary_Emission">Meat/Dairy/Plant_based</string>
-    <string name="calculate">Calculator</string>
-    <string name="nothing_to_show">"nothing to show "</string>
-    <string name="welcome_to_the_ecotrack_please_login">Welcome to the EcoTrack/ Please login</string>
-    <string name="please_enter_username">Please enter username</string>
-    <string name="please_enter_password">please enter password</string>
-    <string name="welcome_to_the_please_login">Welcome to the EcoTrack\nPlease Login In</string>
+    <string name="calculate" translatable="false">Calculator</string>
+    <string name="nothing_to_show" translatable="false">"nothing to show "</string>
+    <string name="welcome_to_the_ecotrack_please_login" translatable="false">Welcome to the EcoTrack/ Please login</string>
+    <string name="please_enter_username" translatable="false">Please enter username</string>
+    <string name="please_enter_password" translatable="false">please enter password</string>
+    <string name="welcome_to_the_please_login" translatable="false">Welcome to the EcoTrack\nPlease Login In</string>
     <string name="login">Login</string>
     <string name="logged_in">LOGGED_IN</string>
     <string name="preference_file_key">preference file key</string>
     <string name="preference_userId_key">EcoTrackPreferenceUserIdKey</string>
     <string name="hello">Hello</string>
+    <string name="Car_Heating_Cooling">Car/Bicycle/Public Transportation</string>
+    <string name="Estimate_your_carbon_footprint_based_On_Transportation_Energy_Dietary">Estimate your carbon footprint based on Transportation/Energy/Dietary choices</string>
+    <string name="Estimate_your_carbon_footprint">Estimate your carbon footprint based on:\nTransportation/Energy/Dietary choices.</string>
+    <string name="New_user_please_create_an_account">New User! Please Sign up here</string>
+    <string name="Sign_Up">Sign Up</string>
+    <string name="Please_sign_up_here">Please sign up here.</string>
+    <string name="enter_username">enter username</string>
+    <string name="enter_password">enter password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="RecyclerView">RecyclerView</string>
+    <string name="Delete">Delete</string>
+    <string name="Car__public_ransportation_air_Travel">Car/Public_transportation/Air_travel</string>
+    <string name="Car__public_transportation_air_Travel">Car/Public_transportation/Air_travel</string>
+    <string name="welcome">Welcome</string>
+    <string name="calculate_carbon_footprint">Calculate Carbon Footprint</string>
+    <string name="user_management">User management</string>
+    <string name="community_engagement">Community Engagement</string>
 </resources>

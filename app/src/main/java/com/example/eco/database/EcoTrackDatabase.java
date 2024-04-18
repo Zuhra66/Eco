@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-import androidx.room.TypeConverter;
+
 import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
@@ -66,5 +66,10 @@ public abstract class EcoTrackDatabase extends RoomDatabase {
     public abstract EcoTrackDAO ecoTrackDAO() ;
 
     public abstract UserDAO userDAO();
+    public void insertUser(User user) {
+        databaseWriteExecuter.execute(() -> {
+            userDAO().insert(user);
+        });
+    }
 }
 
