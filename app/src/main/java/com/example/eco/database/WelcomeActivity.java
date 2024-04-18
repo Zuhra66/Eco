@@ -23,16 +23,12 @@ public class WelcomeActivity extends AppCompatActivity {
         binding.calculateCarbonButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(),1));
-              //  Intent intent = new Intent( WelcomeActivity.this ,MainActivity.class);
-               // startActivity(intent);
-                //intent.putExtra("userId", userId);
+                startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(),2));
 
             }
-
         });
-
     }
+
 
     // Method to create an intent for starting WelcomeActivity
     public static Intent welcomeIntentFactory(Context context) {
