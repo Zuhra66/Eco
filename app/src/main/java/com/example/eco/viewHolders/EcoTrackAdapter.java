@@ -17,7 +17,10 @@ import java.util.List;
 
 public class EcoTrackAdapter extends ListAdapter<EcoTrackLog, EcoTrackViewHolder> {
     private boolean isAdmin;
-
+    private OnDeleteItemClickListener onDeleteItemClickListener;
+    public interface OnDeleteItemClickListener {
+        void onDeleteItemClick(int position);
+    }
     public EcoTrackAdapter(@NonNull DiffUtil.ItemCallback<EcoTrackLog> diffCallback, boolean isAdmin) {
         super(diffCallback);
         this.isAdmin = isAdmin;
@@ -62,6 +65,9 @@ public class EcoTrackAdapter extends ListAdapter<EcoTrackLog, EcoTrackViewHolder
         public boolean areContentsTheSame(@NonNull EcoTrackLog oldItem, @NonNull EcoTrackLog newItem) {
             return oldItem.equals(newItem);
         }
+    }
+    public void setOnDeleteItemClickListener(OnDeleteItemClickListener listener) {
+        this.onDeleteItemClickListener = listener;
     }
 
     // Method to remove an item from the data list

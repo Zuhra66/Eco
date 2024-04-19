@@ -26,8 +26,6 @@ import com.example.eco.databinding.ActivityMainBinding;
 import com.example.eco.viewHolders.EcoTrackAdapter;
 import com.example.eco.viewHolders.EcoTrackLogViewModel;
 
-import java.util.ArrayList;
-
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "malfunction";
     private static final String MAIN_ACTIVITY_USER_ID = "com.example.eco.MAIN_ACTIVITY_USER_ID";
@@ -52,38 +50,35 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        ecoTrackLogViewModel = new ViewModelProvider(this).get(EcoTrackLogViewModel.class);
-
-        RecyclerView recyclerView = binding.welcomeDisplayRecyclerView;
-        adapter = new EcoTrackAdapter(new EcoTrackAdapter.EcoTrackLogDiff(), isAdmin());
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         repository = EcoTrackRepository.getRepository(getApplication());
         loginUser(savedInstanceState);
 
-        ecoTrackLogViewModel.getAllLogsById(loggedInUserId).observe(this, ecoTrackLogs -> {
-            adapter.submitList(ecoTrackLogs);
-        });
+        ecoTrackLogViewModel = new ViewModelProvider(this).get(EcoTrackLogViewModel.class);
+
+        adapter = new EcoTrackAdapter(new EcoTrackAdapter.EcoTrackLogDiff(), isAdmin());
+        adapter.setOnDeleteItemClickListener(position -> deleteItem(position));
+
+        RecyclerView recyclerView = binding.welcomeDisplayRecyclerView;
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        ecoTrackLogViewModel.getAllLogsById(loggedInUserId).observe(this, ecoTrackLogs -> adapter.submitList(ecoTrackLogs));
 
         if (loggedInUserId == -1) {
             Intent intent = LoginActivity.loginIntentFactory(getApplicationContext());
             startActivity(intent);
         }
-        updateSharedPreferences();
-        binding.Calculate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getInformationFromDisplay();
-                insertEcoTrackLogRecord();
 
-            }
+        updateSharedPreferences();
+
+        binding.Calculate.setOnClickListener(v -> {
+            getInformationFromDisplay();
+            insertEcoTrackLogRecord();
         });
     }
 
     private boolean isAdmin() {
-
-        return false;
+        return user != null && "admin1".equals(user.getUsername());
     }
 
     private void loginUser(Bundle savedInstanceState) {
@@ -91,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 Context.MODE_PRIVATE);
         loggedInUserId = sharedPreferences.getInt(getString(R.string.preference_userId_key), LOGGED_OUT);
 
-        if (loggedInUserId == LOGGED_OUT & savedInstanceState != null && savedInstanceState.containsKey(SAVED_INSTANCE_STATE_USERID_KEY)) {
+        if (loggedInUserId == LOGGED_OUT && savedInstanceState != null && savedInstanceState.containsKey(SAVED_INSTANCE_STATE_USERID_KEY)) {
             loggedInUserId = savedInstanceState.getInt(SAVED_INSTANCE_STATE_USERID_KEY, LOGGED_OUT);
         }
         if (loggedInUserId == LOGGED_OUT) {
@@ -131,32 +126,18 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
         item.setTitle(user.getUsername());
-        item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(@NonNull MenuItem item) {
-                showLogoutDialog();
-                return false;
-            }
+        item.setOnMenuItemClickListener(item1 -> {
+            showLogoutDialog();
+            return false;
         });
         return true;
     }
 
     private void showLogoutDialog() {
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
-        final AlertDialog alertDialog = alertBuilder.create();
         alertBuilder.setMessage("Logout");
-        alertBuilder.setPositiveButton("Logout", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                logout();
-            }
-        });
-        alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                alertDialog.dismiss();
-            }
-        });
+        alertBuilder.setPositiveButton("Logout", (dialog, which) -> logout());
+        alertBuilder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
         alertBuilder.create().show();
     }
 
@@ -215,7 +196,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Get the total emissions from CarbonCalculator
         totalEmissions = String.valueOf(calculator.getTotalEmissions());
-
     }
 
     private void deleteItem(int position) {
