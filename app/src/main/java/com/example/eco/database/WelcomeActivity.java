@@ -5,11 +5,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.eco.CommunityEngagementActivity;
 import com.example.eco.MainActivity;
 import com.example.eco.databinding.ActivityWelcomeBinding;
+
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -21,6 +25,20 @@ public class WelcomeActivity extends AppCompatActivity {
         binding = ActivityWelcomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // Load the carbon footprint article URL into the WebView
+        binding.communityEngagementButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences sharedPreferences = getSharedPreferences("EcoTrackPrefs", Context.MODE_PRIVATE);
+                int userId = sharedPreferences.getInt("userId", -1); // Default to -1 if not found
+                if (userId != -1) {
+                    startActivity(CommunityEngagementActivity.communityEngagementActivityIntentFactory(getApplicationContext(), userId));
+                } else {
+                    // Handle the case where user ID is not found
+                    Toast.makeText(WelcomeActivity.this, "User ID not found", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
         // Find the "Calculate Carbon Footprint" button using binding
         binding.calculateCarbonButton.setOnClickListener(new View.OnClickListener() {
             @Override
