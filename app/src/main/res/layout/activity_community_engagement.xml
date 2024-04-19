@@ -4,20 +4,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/communityDisplayRecyclerView"
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="624dp"
-        android:layout_marginTop="16dp"
-        android:padding="2dp" />
+        android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/community_engagement_TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:scrollbars="vertical"
+            android:text="@string/simple_tips_to_reduce_your_carbon_footprint"
+            android:textSize="24sp" />
 
+    </ScrollView>
 
     <Button
         android:id="@+id/deleteButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Delete"
-        android:visibility="gone" />
+        android:visibility="invisible" />
 
 </LinearLayout>

@@ -66,6 +66,7 @@ public class EcoTrackAdapter extends ListAdapter<EcoTrackLog, EcoTrackViewHolder
 
     // Method to remove an item from the data list
     public void deleteItem(int position) {
+
         repository.deleteEcoTrackLog(getItem(position));
     }
 }

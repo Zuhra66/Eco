@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.eco.CommunityEngagementActivity;
 import com.example.eco.MainActivity;
+import com.example.eco.UserManagementActivity;
 import com.example.eco.databinding.ActivityWelcomeBinding;
 
 
@@ -25,7 +26,18 @@ public class WelcomeActivity extends AppCompatActivity {
         binding = ActivityWelcomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Load the carbon footprint article URL into the WebView
+       binding.userManagementButton.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               SharedPreferences sharedPreferences = getSharedPreferences("EcoTrackPrefs", Context.MODE_PRIVATE);
+               int userId = sharedPreferences.getInt("userId", -1); // Default to -1 if not found
+               if (userId != -1) {
+                   startActivity(UserManagementActivity.userManagementActivityIntentFactory(getApplicationContext(),userId));
+               }else {
+                   Toast.makeText(WelcomeActivity.this,"User ID not found", Toast.LENGTH_SHORT).show();
+               }
+           }
+       });
         binding.communityEngagementButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
