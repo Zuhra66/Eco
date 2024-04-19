@@ -218,6 +218,7 @@ public class MainActivity extends AppCompatActivity {
         totalEmissions = String.valueOf(calculator.getTotalEmissions());
 
     }
+
     private void deleteItem(int position) {
         adapter.deleteItem(position);
     }

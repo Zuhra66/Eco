@@ -58,9 +58,10 @@ public class LoginActivity extends AppCompatActivity {
             if (user != null) {
                 String password = binding.passwordLoginEditText.getText().toString();
                 if (password.equals(user.getPassword())) {
-                    // Start the WelcomeActivity instead of MainActivity
+                    storeUserId(user.getId()); // Store the user ID
                     startActivity(WelcomeActivity.welcomeIntentFactory(getApplicationContext()));
-                } else {
+                }
+                else {
                     toastMaker("Invalid password");
                     binding.passwordLoginEditText.setSelection(0);
                 }
@@ -70,7 +71,12 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-
+    private void storeUserId(int userId) {
+        SharedPreferences sharedPreferences = getSharedPreferences("EcoTrackPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("userId", userId);
+        editor.apply();
+    }
     private void toastMaker(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }

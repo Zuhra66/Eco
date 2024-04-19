@@ -103,6 +103,7 @@ public class EcoTrackRepository {
     }
 
     public LiveData<User> getUserByUserId(int userId) {
+
         return userDAO.getUserByUserId(userId);
     }
 
