@@ -25,14 +25,15 @@
         android:id="@+id/calculateCarbonButton"
         android:layout_width="280dp"
         android:layout_height="56dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="132dp"
         android:gravity="center"
         android:text="@string/calculate_carbon_footprint"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.557"
+        app:layout_constraintHorizontal_bias="0.574"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/WelcomeTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/WelcomeTextView"
+        />
 
     <Button
         android:id="@+id/user_management_button"
@@ -57,28 +58,17 @@
         app:layout_constraintHorizontal_bias="0.565"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/user_management_button"/>
-
-
     <Button
-        android:id="@+id/Environmental_news_button"
+        android:id="@+id/environmental_news_button"
         android:layout_width="284dp"
         android:layout_height="58dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/Environmental_news"
+        android:text="@string/Enviromental_News"
+        tools:layout_editor_absoluteX="75dp"
+        tools:layout_editor_absoluteY="457dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.574"
+        app:layout_constraintHorizontal_bias="0.565"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/community_engagement_button" />
-    <Button
-        android:id="@+id/Engage_environmental_button"
-        android:layout_width="284dp"
-        android:layout_height="58dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/Engage_Environmental_Advocacy"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.574"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Environmental_news_button" />
+        app:layout_constraintTop_toBottomOf="@+id/community_engagement_button"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
