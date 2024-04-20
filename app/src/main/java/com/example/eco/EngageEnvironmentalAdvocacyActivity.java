@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.webkit.WebView;
+import android.widget.TextView;
 
 
 import androidx.annotation.NonNull;
@@ -21,14 +22,15 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.eco.database.EcoTrackRepository;
 import com.example.eco.database.entity.User;
 
+import com.example.eco.databinding.ActivityEngageEnvironmentalAdvocacyBinding;
 import com.example.eco.databinding.ActivityEnviromentalNewsBinding;
 import com.example.eco.viewHolders.EcoTrackAdapter;
 import com.example.eco.viewHolders.EcoTrackLogViewModel;
 
-public class EnvironmentalNewsActivity extends AppCompatActivity {
-    private static final String ENVIRONMENTAL_NEWS_USER_ID = "com.example.eco.ENVIRONMENTAL_NEWS_USER_ID";
+public class EngageEnvironmentalAdvocacyActivity extends AppCompatActivity {
+    private static final String ENGAGE_ENVIRONMENTAL_USER_ID = "com.example.eco.ENGAGE_ENVIRONMENTAL_USER_ID";
     private static final String SAVED_INSTANCE_STATE_USERID_KEY = "com.example.eco.SAVED_INSTANCE_STATE_USERID_KEY";
-    private ActivityEnviromentalNewsBinding binding;
+    private ActivityEngageEnvironmentalAdvocacyBinding binding;
     private EcoTrackRepository repository;
     private EcoTrackLogViewModel ecoTrackLogViewModel;
     private EcoTrackAdapter adapter;
@@ -40,17 +42,18 @@ public class EnvironmentalNewsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityEnviromentalNewsBinding.inflate(getLayoutInflater());
+        binding = ActivityEngageEnvironmentalAdvocacyBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         repository = EcoTrackRepository.getRepository(getApplication());
 
+        TextView engageEnvironmentalAdvocacyTextView = findViewById(R.id.engage_environmental_advocacy_TextView);
+        String content = " How to Get Involved with Environmental Advocacy\n" +
+                "We’re always told that every little bit of concern about the environment makes a difference: " +
+                "drinking from reusable water bottles, " +
+                "forgoing straws, taking shorter showers." +
+                " Those are helpful, for sure, but they are incremental and limited by the number of people who embrace such mindful habits.";
+        engageEnvironmentalAdvocacyTextView.setText(content);
 
-
-        // Initialize the WebView
-        WebView webView = findViewById(R.id.Environmental_news_webView);
-
-        // Load the environmental news URL
-        webView.loadUrl("https://sustainability.georgetown.edu/community-engagement/things-you-can-do/");
         ecoTrackLogViewModel = new ViewModelProvider(this).get(EcoTrackLogViewModel.class);
 
         getUser(savedInstanceState);
@@ -64,7 +67,7 @@ public class EnvironmentalNewsActivity extends AppCompatActivity {
             loggedInUserId = savedInstanceState.getInt(SAVED_INSTANCE_STATE_USERID_KEY, LOGGED_OUT);
         }
         if (loggedInUserId == LOGGED_OUT) {
-            loggedInUserId = getIntent().getIntExtra(ENVIRONMENTAL_NEWS_USER_ID , LOGGED_OUT);
+            loggedInUserId = getIntent().getIntExtra(ENGAGE_ENVIRONMENTAL_USER_ID , LOGGED_OUT);
         }
         if (loggedInUserId == LOGGED_OUT) {
             return;
@@ -111,7 +114,7 @@ public class EnvironmentalNewsActivity extends AppCompatActivity {
     }
 
     private void showLogoutDialog() {
-        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(EnvironmentalNewsActivity.this);
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(EngageEnvironmentalAdvocacyActivity.this);
         final AlertDialog alertDialog = alertBuilder.create();
         alertBuilder.setMessage("Logout");
         alertBuilder.setPositiveButton("Logout", new DialogInterface.OnClickListener() {
@@ -132,7 +135,7 @@ public class EnvironmentalNewsActivity extends AppCompatActivity {
     private void logout() {
         loggedInUserId = LOGGED_OUT;
         updateSharedPreferences();
-        getIntent().putExtra(ENVIRONMENTAL_NEWS_USER_ID, loggedInUserId);
+        getIntent().putExtra(ENGAGE_ENVIRONMENTAL_USER_ID, loggedInUserId);
         startActivity(LoginActivity.loginIntentFactory(getApplicationContext()));
     }
 
@@ -144,9 +147,9 @@ public class EnvironmentalNewsActivity extends AppCompatActivity {
         sharedPrefEditor.apply();
     }
 
-    public static Intent environmentalNewsActivityIntentFactory(Context context, int userId) {
-        Intent intent = new Intent(context, EnvironmentalNewsActivity.class);
-        intent.putExtra(ENVIRONMENTAL_NEWS_USER_ID, userId);
+    public static Intent engageEnvironmentalAdvocacyActivityIntentFactory(Context context, int userId) {
+        Intent intent = new Intent(context, EngageEnvironmentalAdvocacyActivity.class);
+        intent.putExtra(ENGAGE_ENVIRONMENTAL_USER_ID, userId);
         return intent;
     }
 

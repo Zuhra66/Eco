@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.eco.CommunityEngagementActivity;
+import com.example.eco.EngageEnvironmentalAdvocacyActivity;
 import com.example.eco.EnvironmentalNewsActivity;
 import com.example.eco.MainActivity;
 import com.example.eco.UserManagementActivity;
@@ -27,13 +28,25 @@ public class WelcomeActivity extends AppCompatActivity {
         binding = ActivityWelcomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.environmentalNewsButton.setOnClickListener(new View.OnClickListener() {
+        binding.EngageEnvironmentalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SharedPreferences sharedPreferences = getSharedPreferences("EcoTrackPrefs", Context.MODE_PRIVATE);
                 int userId = sharedPreferences.getInt("userId", -1); // Default to -1 if not found
                 if (userId != -1) {
-                    startActivity(UserManagementActivity.userManagementActivityIntentFactory(getApplicationContext(),userId));
+                    startActivity(EngageEnvironmentalAdvocacyActivity.engageEnvironmentalAdvocacyActivityIntentFactory(getApplicationContext(),userId));
+                }else {
+                    Toast.makeText(WelcomeActivity.this,"User ID not found", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        binding.EnvironmentalNewsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences sharedPreferences = getSharedPreferences("EcoTrackPrefs", Context.MODE_PRIVATE);
+                int userId = sharedPreferences.getInt("userId", -1); // Default to -1 if not found
+                if (userId != -1) {
+                    startActivity(EnvironmentalNewsActivity.environmentalNewsActivityIntentFactory(getApplicationContext(),userId));
                 }else {
                     Toast.makeText(WelcomeActivity.this,"User ID not found", Toast.LENGTH_SHORT).show();
                 }
