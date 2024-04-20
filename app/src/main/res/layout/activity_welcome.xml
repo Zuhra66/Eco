@@ -37,11 +37,12 @@
 
     <Button
         android:id="@+id/user_management_button"
-        android:layout_width="282dp"
-        android:layout_height="66dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/darkGreen"
         android:text="@string/user_management"
-        android:textSize="16sp"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.565"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,26 +50,41 @@
 
     <Button
         android:id="@+id/community_engagement_button"
-        android:layout_width="284dp"
-        android:layout_height="58dp"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/darkGreen"
         android:text="@string/community_engagement"
-        tools:layout_editor_absoluteX="75dp"
-        tools:layout_editor_absoluteY="457dp"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.565"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/user_management_button"/>
     <Button
         android:id="@+id/environmental_news_button"
-        android:layout_width="284dp"
-        android:layout_height="58dp"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/darkGreen"
         android:text="@string/Enviromental_News"
-        tools:layout_editor_absoluteX="75dp"
-        tools:layout_editor_absoluteY="457dp"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.565"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/community_engagement_button"/>
+
+    <Button
+        android:id="@+id/updateInformation"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/darkGreen"
+        android:text="@string/update_information"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.565"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/environmental_news_button"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
