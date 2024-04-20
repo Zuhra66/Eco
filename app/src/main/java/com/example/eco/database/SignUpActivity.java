@@ -26,8 +26,9 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Get user input from EditText fields
-                String username = binding.usernameEditText.getText().toString().trim();
-                String password = binding.passwordEditText.getText().toString().trim();
+                String username = binding.newUsernameEditText.getText().toString().trim();
+                String password = binding.newPasswordEditText.getText().toString().trim();
+                String retypePassword = binding.newRetypePasswordEditText.getText().toString().trim();
 
                 // Validate user input
                 if (username.isEmpty() || password.isEmpty()) {
@@ -40,20 +41,31 @@ public class SignUpActivity extends AppCompatActivity {
                     Toast.makeText(SignUpActivity.this, "Username already exists", Toast.LENGTH_SHORT).show();
                     return;
                 }else {
+                    if (password.length() >= 8 && password.matches(".*[!@#$%^&*(),.?\":{}|<>].*")) {
+                        if (password.equals(retypePassword)) {
+                            // Create a new User object
+                            User newUser = new User(username, password);
 
-                    // Create a new User object
-                    User newUser = new User(username, password);
+                            // Insert the new user into the database
+                            repository.insertUser(newUser);
 
-                    // Insert the new user into the database
-                    repository.insertUser(newUser);
+                            // Display a success message
+                            Toast.makeText(SignUpActivity.this, "User registered successfully", Toast.LENGTH_SHORT).show();
 
-                    // Display a success message
-                    Toast.makeText(SignUpActivity.this, "User registered successfully", Toast.LENGTH_SHORT).show();
-
-                    // Navigate back to the LoginActivity
-                    Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                    finish(); // Finish the SignUpActivity to prevent going back to it when pressing back button
+                            // Navigate back to the LoginActivity
+                            Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                            finish(); // Finish the SignUpActivity to prevent going back to it when pressing back button
+                        } else {
+                            Toast.makeText(SignUpActivity.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
+                        }
+                    } else{
+                        if (password.length() < 8) {
+                            Toast.makeText(SignUpActivity.this, "Password is not at least 8 characters long.", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(SignUpActivity.this, "Missing special character(i.e. !, @, #, etc.)", Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 }
             }
         });
