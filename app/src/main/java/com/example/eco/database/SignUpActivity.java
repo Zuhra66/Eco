@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 
 import com.example.eco.LoginActivity;
 import com.example.eco.database.entity.User;
@@ -36,37 +37,41 @@ public class SignUpActivity extends AppCompatActivity {
                     return;
                 }
 
-                // Check if the username already exists in the database
-                if (repository.doesUserExist(username)) {
-                    Toast.makeText(SignUpActivity.this, "Username already exists", Toast.LENGTH_SHORT).show();
-                    return;
-                }else {
-                    if (password.length() >= 8 && password.matches(".*[!@#$%^&*(),.?\":{}|<>].*")) {
-                        if (password.equals(retypePassword)) {
-                            // Create a new User object
-                            User newUser = new User(username, password);
-
-                            // Insert the new user into the database
-                            repository.insertUser(newUser);
-
-                            // Display a success message
-                            Toast.makeText(SignUpActivity.this, "User registered successfully", Toast.LENGTH_SHORT).show();
-
-                            // Navigate back to the LoginActivity
-                            Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
-                            startActivity(intent);
-                            finish(); // Finish the SignUpActivity to prevent going back to it when pressing back button
+                repository.doesUserExist(username).observe(SignUpActivity.this, new Observer<Boolean>() {
+                    @Override
+                    public void onChanged(Boolean aBoolean) {
+                        if (aBoolean) {
+                            // User already exists, show error message
+                            Toast.makeText(SignUpActivity.this, "User already exists", Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(SignUpActivity.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
-                        }
-                    } else{
-                        if (password.length() < 8) {
-                            Toast.makeText(SignUpActivity.this, "Password is not at least 8 characters long.", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(SignUpActivity.this, "Missing special character(i.e. !, @, #, etc.)", Toast.LENGTH_SHORT).show();
+                            if (password.length() >= 8 && password.matches(".*[!@#$%^&*(),.?\":{}|<>].*")) {
+                                if (password.equals(retypePassword)) {
+                                    // Create a new User object
+                                    User newUser = new User(username, password);
+
+                                    // Insert the new user into the database
+                                    repository.insertUser(newUser);
+
+                                    // Display a success message
+                                    Toast.makeText(SignUpActivity.this, "User registered successfully", Toast.LENGTH_SHORT).show();
+
+                                    // Navigate back to the LoginActivity
+                                    Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                                    startActivity(intent);
+                                    finish(); // Finish the SignUpActivity to prevent going back to it when pressing back button
+                                } else {
+                                    Toast.makeText(SignUpActivity.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
+                                }
+                            } else {
+                                if (password.length() < 8) {
+                                    Toast.makeText(SignUpActivity.this, "Password is not at least 8 characters long.", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(SignUpActivity.this, "Missing special character(i.e. !, @, #, etc.)", Toast.LENGTH_SHORT).show();
+                                }
+                            }
                         }
                     }
-                }
+                });
             }
         });
     }
