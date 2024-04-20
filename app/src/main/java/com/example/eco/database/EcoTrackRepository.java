@@ -3,6 +3,8 @@ import android.app.Application;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 
 import com.example.eco.MainActivity;
 import com.example.eco.database.entity.EcoTrackDAO;
@@ -19,6 +21,7 @@ public class EcoTrackRepository {
     private final EcoTrackDAO ecoTrackDAO;
     private static UserDAO userDAO = null;
     public static EcoTrackRepository repository;
+    private LiveData<Boolean> userExists;
 
     private EcoTrackRepository(Application application) {
         EcoTrackDatabase db = EcoTrackDatabase.getDatabase(application);
@@ -129,9 +132,20 @@ public class EcoTrackRepository {
         return null;
     }
 
-    public boolean doesUserExist(String username) {
+    public LiveData<Boolean> doesUserExist(String username) {
+        MutableLiveData<Boolean> userExists = new MutableLiveData<>();
         LiveData<User> userLiveData = getUserByUserName(username);
-        return userLiveData.getValue() != null;
+        userLiveData.observeForever(new Observer<User>() {
+            @Override
+            public void onChanged(User user) {
+                if (user != null) {
+                    userExists.postValue(true);
+                } else {
+                    userExists.postValue(false);
+                }
+            }
+        });
+        return userExists;
     }
 
     public void deleteEcoTrackLog(EcoTrackLog ecoTrackLog) {
