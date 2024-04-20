@@ -45,4 +45,5 @@
     <string name="Enterpassword">Enter Password</string>
     <string name="Enter_username">Enter Username</string>
     <string name="Username2">Username:</string>
+    <string name="update_information">Update Information</string>
 </resources>
