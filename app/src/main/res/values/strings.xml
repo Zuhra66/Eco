@@ -8,15 +8,12 @@
     <string name="Dietary_Emission">Meat/Dairy/Plant_based</string>
     <string name="calculate" translatable="false">Calculator</string>
     <string name="nothing_to_show" translatable="false">"nothing to show "</string>
-    <string name="welcome_to_the_ecotrack_please_login" translatable="false">Welcome to the EcoTrack/ Please login</string>
     <string name="please_enter_username" translatable="false">Please enter username</string>
     <string name="please_enter_password" translatable="false">please enter password</string>
-    <string name="welcome_to_the_please_login" translatable="false">Welcome to the EcoTrack\nPlease Login In</string>
     <string name="login">Login</string>
     <string name="logged_in">LOGGED_IN</string>
     <string name="preference_file_key">preference file key</string>
     <string name="preference_userId_key">EcoTrackPreferenceUserIdKey</string>
-    <string name="hello">Hello</string>
     <string name="Car_Heating_Cooling">Car/Bicycle/Public Transportation</string>
     <string name="Estimate_your_carbon_footprint_based_On_Transportation_Energy_Dietary">Estimate your carbon footprint based on Transportation/Energy/Dietary choices</string>
     <string name="Estimate_your_carbon_footprint">Estimate your carbon footprint based on:\nTransportation/Energy/Dietary choices.</string>
@@ -41,4 +38,10 @@
     <string name="retype_password">Retype Password</string>
     <string name="Enter_password">Enter Password</string>
     <string name="password_must_be_at_least_8_character_long_ncontain_a_special_character">Password must be at least 8 character long \nContain a special character</string>
+    <string name="passwordRequirements">Password must be at least eight characters long\nPassword must also contain a special character</string>
+    <string name="welcomeMessage">Welcome to EcoTrack\n\n\nPlease login</string>
+    <string name="Password">Password:</string>
+    <string name="Enterpassword">Enter Password</string>
+    <string name="Enter_username">Enter Username</string>
+    <string name="Username2">Username:</string>
 </resources>
