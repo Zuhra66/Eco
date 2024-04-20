@@ -50,6 +50,7 @@
         android:textColor="@color/white"
         android:textColorHint="@color/gray"
         android:textSize="20sp"
+        android:inputType="text"
         app:layout_constraintBottom_toTopOf="@+id/newPasswordEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.555"
@@ -79,7 +80,7 @@
         android:autofillHints=""
         android:ems="10"
         android:gravity="center"
-        android:hint="@string/enter_password"
+        android:hint="@string/Enter_password"
         android:inputType="textPassword"
         android:textColor="@color/white"
         android:textColorHint="@color/gray"
@@ -121,6 +122,20 @@
         app:layout_constraintStart_toEndOf="@+id/newPasswordText"
         app:layout_constraintTop_toBottomOf="@id/newPasswordEditText" />
 
+    <TextView
+        android:id="@+id/passwordRequirements"
+        android:layout_width="400dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="@string/password_must_be_at_least_8_character_long_ncontain_a_special_character"
+        android:textColor="@color/white"
+        android:textStyle="italic"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newRetypePasswordEditText" />
+
     <Button
         android:id="@+id/signUpButton"
         android:layout_width="150dp"
@@ -131,7 +146,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newRetypePasswordEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordRequirements" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

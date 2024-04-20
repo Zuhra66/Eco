@@ -39,4 +39,6 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="retype_password">Retype Password</string>
+    <string name="Enter_password">Enter Password</string>
+    <string name="password_must_be_at_least_8_character_long_ncontain_a_special_character">Password must be at least 8 character long \nContain a special character</string>
 </resources>
