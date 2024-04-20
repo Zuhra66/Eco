@@ -2,68 +2,152 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/darkGreen"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".database.SignUpActivity">
 
     <TextView
-        android:id="@+id/sign_up_TextView"
-        android:layout_width="318dp"
-        android:layout_height="61dp"
-        android:layout_margin="16dip"
-        android:layout_marginTop="184dp"
+        android:id="@+id/registerText"
+        android:layout_width="310dp"
+        android:layout_height="60dp"
         android:gravity="center"
         android:text="@string/Please_sign_up_here"
+        android:textColor="@color/white"
+        android:textStyle="bold"
         android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintVertical_bias="0.129" />
+
+    <TextView
+        android:id="@+id/newUsernameText"
+        android:layout_width="100dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center_vertical"
+        android:text="@string/username"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registerText" />
 
     <EditText
-        android:id="@+id/usernameEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="228dp"
+        android:id="@+id/newUsernameEditText"
+        android:layout_width="250dp"
+        android:layout_height="55dp"
+        android:layout_margin="16dp"
+        android:layout_marginTop="48dp"
+        android:autofillHints=""
         android:ems="10"
         android:gravity="center"
-        android:hint="@string/enter_username"
+        android:hint="@string/username"
+        android:textColor="@color/white"
+        android:textColorHint="@color/gray"
+        android:textSize="20sp"
         android:inputType="text"
-        android:text=""
+        app:layout_constraintBottom_toTopOf="@+id/newPasswordEditText"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintStart_toEndOf="@+id/newUsernameText"
+        app:layout_constraintTop_toBottomOf="@+id/registerText"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/newPasswordText"
+        android:layout_width="100dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center_vertical"
+        android:text="@string/password"
+        android:textColor="@color/white"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sign_up_TextView" />
+        app:layout_constraintTop_toBottomOf="@+id/newUsernameText" />
 
     <EditText
-        android:id="@+id/password_EditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/newPasswordEditText"
+        android:layout_width="250dp"
+        android:layout_height="55dp"
+        android:layout_margin="16dp"
+        android:layout_marginTop="36dp"
+        android:autofillHints=""
         android:ems="10"
-        android:inputType="textPassword"
-        android:hint="@string/enter_password"
-        android:text=""
         android:gravity="center"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="371dp"
+        android:hint="@string/Enter_password"
+        android:inputType="textPassword"
+        android:textColor="@color/white"
+        android:textColorHint="@color/gray"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.644"
+        app:layout_constraintStart_toEndOf="@+id/newPasswordText"
+        app:layout_constraintTop_toBottomOf="@id/newUsernameEditText" />
+
+    <TextView
+        android:id="@+id/newRetypePasswordText"
+        android:layout_width="100dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center_vertical"
+        android:text="@string/retype_password"
+        android:textColor="@color/white"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/usernameEditText"
-        tools:ignore="MissingConstraints,TextFields"
-        android:autofillHints="" />
+        app:layout_constraintTop_toBottomOf="@+id/newPasswordText" />
+
+    <EditText
+        android:id="@+id/newRetypePasswordEditText"
+        android:layout_width="250dp"
+        android:layout_height="55dp"
+        android:layout_margin="16dp"
+        android:layout_marginTop="36dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:gravity="center"
+        android:hint="@string/retype_password"
+        android:inputType="textPassword"
+        android:textColor="@color/white"
+        android:textColorHint="@color/gray"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.644"
+        app:layout_constraintStart_toEndOf="@+id/newPasswordText"
+        app:layout_constraintTop_toBottomOf="@id/newPasswordEditText" />
+
+    <TextView
+        android:id="@+id/passwordRequirements"
+        android:layout_width="400dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="@string/password_must_be_at_least_8_character_long_ncontain_a_special_character"
+        android:textColor="@color/white"
+        android:textStyle="italic"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newRetypePasswordEditText" />
 
     <Button
         android:id="@+id/signUpButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_width="150dp"
+        android:layout_height="54dp"
+        android:layout_marginBottom="200dp"
         android:text="@string/sign_up"
-        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password_EditText" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordRequirements" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
